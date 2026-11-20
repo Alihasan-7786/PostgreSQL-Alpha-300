@@ -1,0 +1,20 @@
+-- 1. VIEW ESTIMATED EXECUTION PLAN WITHOUT RUNNING THE QUERY (Lecture 199)
+EXPLAIN
+SELECT *
+FROM users
+WHERE username = 'Alyson14';
+
+
+-- 2. EXECUTE QUERY & INSPECT ACTUAL TIMING AND ROW COUNTS (Lecture 199)
+EXPLAIN ANALYZE
+SELECT *
+FROM users
+WHERE username = 'Alyson14';
+
+
+-- 3. INSPECT A JOIN / FILTER PLAN TO DIAGNOSE PERFORMANCE (Lecture 200)
+EXPLAIN ANALYZE
+SELECT u.username, COUNT(*) AS total_likes
+FROM users u
+JOIN likes l ON l.user_id = u.id
+GROUP BY u.id, u.username;

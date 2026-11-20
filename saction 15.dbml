@@ -1,0 +1,29 @@
+// SECTION 15: FINAL DATABASE STRUCTURE
+
+// Creating a users table to store basic user details
+Table users {
+  id SERIAL [pk, increment]
+  created_at TIMESTAMP
+  updated_at TIMESTAMP
+  username VARCHAR(30)
+}
+
+// Creating a posts table and connecting each post to its user
+Table posts {
+  id SERIAL [pk, increment]
+  created_at TIMESTAMP
+  updated_at TIMESTAMP
+  url VARCHAR(200)
+  title varchar
+  user_id INTEGER [ref: > users.id]
+}
+
+// Creating a comments table to store comments made by users on posts
+Table comments {
+  id SERIAL [pk, increment]
+  created_at TIMESTAMP
+  updated_at TIMESTAMP
+  contents VARCHAR(240)
+  user_id INTEGER [ref: > users.id]
+  post_id INTEGER [ref: > posts.id]
+}

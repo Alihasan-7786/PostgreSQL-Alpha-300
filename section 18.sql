@@ -1,0 +1,20 @@
+CREATE TABLE hashtags (
+    id SERIAL PRIMARY KEY,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    title VARCHAR(20) NOT NULL UNIQUE
+);
+
+CREATE TABLE hashtags_posts (
+    id SERIAL PRIMARY KEY,
+    post_id INTEGER NOT NULL REFERENCES posts(id) ON DELETE CASCADE,
+    hashtag_id INTEGER NOT NULL REFERENCES hashtags(id) ON DELETE CASCADE,
+    UNIQUE (post_id, hashtag_id)
+);
+
+ALTER TABLE users
+    ADD COLUMN bio VARCHAR(400),
+    ADD COLUMN avatar VARCHAR(200),
+    ADD COLUMN phone VARCHAR(25),
+    ADD COLUMN email VARCHAR(40) UNIQUE,
+    ADD COLUMN password VARCHAR(50),
+    ADD COLUMN status VARCHAR(15);
